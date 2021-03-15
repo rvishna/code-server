@@ -48,7 +48,4 @@ RUN npm install -g @angular/cli
 USER coder
 EXPOSE 8080
 
-RUN git clone https://github.com/rvishna/dotfiles && \
-    bash dotfiles/install.sh
-
 ENTRYPOINT ["dumb-init", "code-server", "--host", "0.0.0.0"]
