@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libtinfo5 \
     libz-dev \
     lldb \
+    make \
     python3 \
     python3-dev \
     python3-pip \
@@ -30,7 +31,8 @@ RUN ln -s /usr/bin/python3 /usr/local/bin/python && \
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
 RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
-    dpkg -i packages-microsoft-prod.deb
+    dpkg -i packages-microsoft-prod.deb && \
+    rm -f packages-microsoft-prod.deb
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     dotnet-sdk-3.1 \
@@ -45,5 +47,8 @@ RUN npm install -g @angular/cli
 
 USER coder
 EXPOSE 8080
+
+RUN git clone https://github.com/rvishna/dotfiles && \
+    bash dotfiles/install.sh
 
 ENTRYPOINT ["dumb-init", "code-server", "--host", "0.0.0.0"]
