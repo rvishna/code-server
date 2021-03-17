@@ -11,8 +11,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     default-jdk \
     g++ \
+    git \
     gnupg \
     libboost-all-dev \
+    libcurl4-openssl-dev \
     libnss-wrapper \
     libssl-dev \
     libtinfo5 \
